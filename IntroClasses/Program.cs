@@ -6,18 +6,24 @@ public class Program
     {
         bool isPlaying = true;
         Vector2 startingPosition = new Vector2(4, 2);
-        Player hero = new Player(startingPosition);
+        Character hero = new Player(startingPosition);
         startingPosition.X = 0;
         startingPosition.Y = 0;
         // startingPosition = new Vector2(0, 0);
-        Player anotherHero = new Player(startingPosition);
+        Character anotherHero = new Npc(startingPosition);
+        List<Character> characters = [hero, anotherHero];
+
+        foreach (Character character in characters)
+        {
+            character.Display();
+        }
         
-        hero.Display();
-        anotherHero.Display();
         while (isPlaying)
         {
-            isPlaying = hero.TakeTurn();
-            isPlaying = anotherHero.TakeTurn();
+            foreach (Character character in characters)
+            {
+                isPlaying = character.TakeTurn();
+            }
         }
         
         Console.WriteLine("Goodbye!");
