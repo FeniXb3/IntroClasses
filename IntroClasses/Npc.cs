@@ -11,9 +11,15 @@ public class Npc : Character
     {
         Console.SetCursorPosition(_position.X, _position.Y);
         Console.Write(" ");
-        int targetX = Random.Shared.Next(-1, 2);
-        int targetY = Random.Shared.Next(-1, 2);
-        Move(targetX, targetY);
+        List<Vector2> availableDirections = [
+            new Vector2(-1, 0), // w lewo
+            new Vector2(1, 0), // w prawo
+            new Vector2(0, -1), // w górę
+            new Vector2(0, 1) // w dół
+        ];
+        int index = Random.Shared.Next(availableDirections.Count);
+        Vector2 direction = availableDirections[index];
+        Move(direction.X, direction.Y);
         Display();
         return true;
     }
