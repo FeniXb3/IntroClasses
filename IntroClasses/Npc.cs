@@ -11,7 +11,9 @@ public class Npc : Character
     {
         Console.SetCursorPosition(_position.X, _position.Y);
         Console.Write(" ");
-        Move(1, 0);
+        int targetX = Random.Shared.Next(-1, 2);
+        int targetY = Random.Shared.Next(-1, 2);
+        Move(targetX, targetY);
         Display();
         return true;
     }
