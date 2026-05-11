@@ -16,6 +16,11 @@ public abstract class Character
         Console.Write(_avatar);
     }
 
+    public void Move(Vector2 direction)
+    {
+        Move(direction.X, direction.Y);
+    }
+
     public void Move(int diffX, int diffY)
     {
         int targetX = _position.X + diffX;
