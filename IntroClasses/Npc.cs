@@ -2,6 +2,12 @@ namespace IntroClasses;
 
 public class Npc : Character
 {
+    List<Vector2> availableDirections = [
+        new Vector2(-1, 0), // w lewo
+        new Vector2(1, 0), // w prawo
+        new Vector2(0, -1), // w górę
+        new Vector2(0, 1) // w dół
+    ];
     public Npc(Vector2 startingPosition) : base(startingPosition)
     {
         
@@ -11,12 +17,7 @@ public class Npc : Character
     {
         Console.SetCursorPosition(_position.X, _position.Y);
         Console.Write(" ");
-        List<Vector2> availableDirections = [
-            new Vector2(-1, 0), // w lewo
-            new Vector2(1, 0), // w prawo
-            new Vector2(0, -1), // w górę
-            new Vector2(0, 1) // w dół
-        ];
+
         int index = Random.Shared.Next(availableDirections.Count);
         Vector2 direction = availableDirections[index];
         Move(direction);

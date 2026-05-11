@@ -2,30 +2,30 @@ namespace IntroClasses;
 
 public class Player : Character
 {
-    public Player(Vector2 startingPosition) : base(startingPosition)
+    private readonly Dictionary<ConsoleKey, Vector2> _inputMap;
+
+    public Player(Vector2 startingPosition, Dictionary<ConsoleKey, Vector2> inputMap) : base(startingPosition)
     {
+        _inputMap = inputMap;
     }
 
     public override bool TakeTurn()
     {
         var isPlaying = IsPlaying(out var input);
-        switch (input.Key)
+
+        if (_inputMap.ContainsKey(input.Key))
         {
-            case ConsoleKey.S:
-                Move(0, 1);
-                break;
-            case ConsoleKey.W:
-                Move(0, -1);
-                break;
-            case ConsoleKey.A:
-                Move(-1, 0);
-                break;
-            case ConsoleKey.D:
-                Move(1, 0);
-                break;
-            case ConsoleKey.Q:
-                isPlaying = false;
-                break;
+            Vector2 direction = _inputMap[input.Key];
+            Move(direction);
+        }
+        else
+        {
+            switch (input.Key)
+            {
+                case ConsoleKey.Q:
+                    isPlaying = false;
+                    break;
+            }
         }
 
         Display();
