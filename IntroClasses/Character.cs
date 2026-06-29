@@ -30,6 +30,11 @@ public abstract class Character : GameObject
                 {
                     return false;
                 }
+
+                if (cell.Visuals == '|' && _inventory.Has('*'))
+                {
+                    RemoveItemByAvatar('*');
+                }
                 
                 _position.Y = targetY;
                 _position.X = targetX;
@@ -46,6 +51,11 @@ public abstract class Character : GameObject
         }
 
         return false;
+    }
+
+    private void RemoveItemByAvatar(char c)
+    {
+        _inventory.RemoveItemByAvatar(c);
     }
 
     public void AddItem(Item item)
