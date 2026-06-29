@@ -14,7 +14,7 @@ public class Player : Character
         bool isPlaying = true;
         var input = Console.ReadKey(true);
         Console.SetCursorPosition(_position.X, _position.Y);
-        Cell cell = map.GetCell(_position.X, _position.Y);
+        Cell previousCell = map.GetCell(_position.X, _position.Y);
 
         if (_inputMap.ContainsKey(input.Key))
         {
@@ -22,8 +22,15 @@ public class Player : Character
             bool moved = Move(direction, map);
             if (moved)
             {
-                cell.Leave();
-                cell.Display();
+                previousCell.Leave();
+                previousCell.Display();
+                
+                Cell currentCell = map.GetCell(_position.X, _position.Y);
+                if (currentCell.Visuals == '>')
+                {
+                    map.LoadFromFile("level2.txt");
+                    map.Display();
+                }
             }
         }
         else
