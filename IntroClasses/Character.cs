@@ -26,20 +26,22 @@ public abstract class Character : GameObject
             if (targetX >= 0 && targetX < Console.BufferWidth && targetX < map.GetRowWidth(targetY))
             {
                 Cell cell = map.GetCell(targetX, targetY);
-                if (cell.Visuals != '#' && !cell.IsOccupied())
-                { 
-                    _position.Y = targetY;
-                    _position.X = targetX;
-                    
-                    cell.Occupy(this);
-                    if (cell.HasItem())
-                    {
-                        // Item item = cell.TakeItem();
-                        // AddItem(item);
-                        AddItem(cell.TakeItem());
-                    }
-                    return true;
+                if (cell.Visuals == '#' || cell.IsOccupied() || (cell.Visuals == '|' && !_inventory.Has('*')))
+                {
+                    return false;
                 }
+                
+                _position.Y = targetY;
+                _position.X = targetX;
+                    
+                cell.Occupy(this);
+                if (cell.HasItem())
+                {
+                    // Item item = cell.TakeItem();
+                    // AddItem(item);
+                    AddItem(cell.TakeItem());
+                }
+                return true;
             }
         }
 

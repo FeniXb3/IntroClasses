@@ -14,7 +14,8 @@ public class Program
         Map map = new Map();
         map.LoadFromFile("level1.txt");
 
-        Item item = new Item('*', new Vector2(1, 2), map);
+        Item item = new Item('*', new Vector2(11, 6), map);
+        Item item2 = new Item('&', new Vector2(4, 3), map);
         
         
         bool isPlaying = true;

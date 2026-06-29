@@ -32,4 +32,23 @@ public class Inventory
             Console.WriteLine("                        ");
         }
     }
+
+    public bool Has(char itemAvatar)
+    {
+        // foreach (Item item in _items)
+        // {
+        //     if (item.GetAvatar() == itemAvatar)
+        //     {
+        //         return true;
+        //     }
+        // }
+        // return false;
+        
+        // return _items.Any(item =>
+        // {
+        //     return item.GetAvatar() == itemAvatar;
+        // });
+        
+        return _items.Any(item => item.GetAvatar() == itemAvatar);
+    }
 }
